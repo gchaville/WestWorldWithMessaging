@@ -1,0 +1,31 @@
+﻿La génération a démarré 16/09/2015 17:31:21.
+     1>Projet "C:\Users\Gillian\Downloads\VS2010\Buckland_Chapter2-State Machines\WestWorldWithMessaging\WestWorldWithMessaging.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo".\Debug/" /Fd".\Debug/vc110.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt DrunkardOwnedStates.cpp MessageDispatcher.cpp MinerOwnedStates.cpp MinersWifeOwnedStates.cpp main.cpp
+         DrunkardOwnedStates.cpp
+         Génération de code en cours...
+         Ignoré... (aucune modification pertinente détectée)
+         main.cpp
+         MinersWifeOwnedStates.cpp
+         MinerOwnedStates.cpp
+         MessageDispatcher.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug/WestWorldWithMessaging.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/WestWorldWithMessaging.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\WestWorldWithMessaging.lib" /MACHINE:X86 /SAFESEH .\Debug/BaseGameEntity.obj
+         .\Debug/Drunkard.obj
+         .\Debug/DrunkardOwnedStates.obj
+         .\Debug/EntityManager.obj
+         .\Debug/main.obj
+         .\Debug/MessageDispatcher.obj
+         .\Debug/Miner.obj
+         .\Debug/MinerOwnedStates.obj
+         .\Debug/MinersWife.obj
+         .\Debug/MinersWifeOwnedStates.obj
+         .\Debug/CrudeTimer.obj
+         WestWorldWithMessaging.vcxproj -> C:\Users\Gillian\Downloads\VS2010\Buckland_Chapter2-State Machines\WestWorldWithMessaging\.\Debug\WestWorldWithMessaging.exe
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\bscmake.exe /nologo /o".\Debug/WestWorldWithMessaging.bsc" .\Debug\BaseGameEntity.sbr .\Debug\Drunkard.sbr .\Debug\DrunkardOwnedStates.sbr .\Debug\EntityManager.sbr .\Debug\main.sbr .\Debug\MessageDispatcher.sbr .\Debug\Miner.sbr .\Debug\MinerOwnedStates.sbr .\Debug\MinersWife.sbr .\Debug\MinersWifeOwnedStates.sbr .\Debug\CrudeTimer.sbr
+     1>Génération du projet "C:\Users\Gillian\Downloads\VS2010\Buckland_Chapter2-State Machines\WestWorldWithMessaging\WestWorldWithMessaging.vcxproj" terminée (Build cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:08.14
