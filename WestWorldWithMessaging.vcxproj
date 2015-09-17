@@ -45,6 +45,7 @@
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Gillian\Documents\GitHub\WestWorldWithMessaging\Common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
@@ -137,7 +138,9 @@
     <ClCompile Include="MinerOwnedStates.cpp" />
     <ClCompile Include="MinersWife.cpp" />
     <ClCompile Include="MinersWifeOwnedStates.cpp" />
-    <ClCompile Include="..\..\Common\Time\CrudeTimer.cpp" />
+    <ClCompile Include="Common\Time\CrudeTimer.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Gillian\Documents\GitHub\WestWorldWithMessaging\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEntity.h" />
@@ -152,15 +155,14 @@
     <ClInclude Include="MinerOwnedStates.h" />
     <ClInclude Include="MinersWife.h" />
     <ClInclude Include="MinersWifeOwnedStates.h" />
-    <ClInclude Include="..\..\Common\FSM\State.h" />
-    <ClInclude Include="..\..\Common\FSM\StateMachine.h" />
-    <ClInclude Include="..\..\Common\Messaging\Telegram.h" />
-    <ClInclude Include="..\..\Common\misc\ConsoleUtils.h" />
-    <ClInclude Include="..\..\Common\ConsoleUtils.h" />
-    <ClInclude Include="..\..\Common\Time\CrudeTimer.h" />
-    <ClInclude Include="..\..\Common\2D\SVector2D.h" />
-    <ClInclude Include="..\..\Common\utils.h" />
-    <ClInclude Include="..\..\Common\misc\utils.h" />
+    <ClInclude Include="Common\FSM\State.h" />
+    <ClInclude Include="Common\FSM\StateMachine.h" />
+    <ClInclude Include="Common\Messaging\Telegram.h" />
+    <ClInclude Include="Common\misc\ConsoleUtils.h" />
+    <ClInclude Include="Common\Time\CrudeTimer.h" />
+    <ClInclude Include="Common\2D\SVector2D.h" />
+    <ClInclude Include="Common\utils.h" />
+    <ClInclude Include="Common\misc\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

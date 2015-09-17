@@ -19,6 +19,7 @@
 #include "DrunkardOwnedStates.h"
 #include "fsm/StateMachine.h"
 #include "misc/Utils.h"
+#include "Miner.h"
 
 template <class entity_type> class State;
 struct Telegram;

@@ -31,7 +31,8 @@ const int MaxNuggets         = 3;
 const int ThirstLevel        = 5;
 //above this value a miner is sleepy
 const int TirednessThreshold = 5;
-
+//.................
+const int Rage = 2;
 
 
 class Miner : public BaseGameEntity
@@ -54,6 +55,8 @@ private:
   //the higher the value, the more tired the miner
   int                   m_iFatigue;
 
+  //...................
+  int					m_iRage;
 public:
 
   Miner(int id):m_Location(shack),
@@ -61,6 +64,7 @@ public:
                           m_iMoneyInBank(0),
                           m_iThirst(0),
                           m_iFatigue(0),
+						  m_iRage(0),
                           BaseGameEntity(id)
                                
   {
@@ -97,6 +101,10 @@ public:
   bool          Fatigued()const;
   void          DecreaseFatigue(){m_iFatigue -= 1;}
   void          IncreaseFatigue(){m_iFatigue += 1;}
+
+  bool          Raged()const{return m_iRage >= Rage;}
+  void          ResetRage(){m_iRage = 0;}
+  void          IncreaseRage(){m_iRage += 1;}
 
   int           Wealth()const{return m_iMoneyInBank;}
   void          SetWealth(int val){m_iMoneyInBank = val;}

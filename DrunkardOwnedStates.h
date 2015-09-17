@@ -142,6 +142,29 @@ public:
   virtual bool OnMessage(Drunkard* agent, const Telegram& msg);
 };
 
+class ProvokeFight : public State<Drunkard>
+{
+private:
+  
+  ProvokeFight(){}
+
+  //copy ctor and assignment should be private
+  ProvokeFight(const ProvokeFight&);
+  ProvokeFight& operator=(const ProvokeFight&);
+ 
+public:
+
+  //this is a singleton
+  static ProvokeFight* Instance();
+
+  virtual void Enter(Drunkard* Drunkard);
+
+  virtual void Execute(Drunkard* Drunkard);
+
+  virtual void Exit(Drunkard* Drunkard);
+
+  virtual bool OnMessage(Drunkard* agent, const Telegram& msg);
+};
 
 
 

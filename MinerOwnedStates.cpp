@@ -75,6 +75,32 @@ void EnterMineAndDigForNugget::Exit(Miner* pMiner)
 
 bool EnterMineAndDigForNugget::OnMessage(Miner* pMiner, const Telegram& msg)
 {
+	SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+
+   switch(msg.Msg)
+   {
+	   case Msg_Insult:
+
+	  cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) 
+     << " at time: " << Clock->GetCurrentTime();
+
+     SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
+
+     cout << "\n" << GetNameOfEntity(pMiner->ID()) 
+          << ": Okay Hun, dis cowboy give on my nervs!";
+
+	 if (!pMiner->Raged())
+	 {
+		 pMiner->IncreaseRage();
+	 }
+	 else 
+	 {
+		 pMiner->GetFSM()->ChangeState(Fight::Instance());
+	 }
+      
+     return true;
+
+   }//end switch
   //send msg to global message handler
   return false;
 }
@@ -135,6 +161,32 @@ void VisitBankAndDepositGold::Exit(Miner* pMiner)
 
 bool VisitBankAndDepositGold::OnMessage(Miner* pMiner, const Telegram& msg)
 {
+		SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+
+   switch(msg.Msg)
+   {
+	   case Msg_Insult:
+
+	  cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) 
+     << " at time: " << Clock->GetCurrentTime();
+
+     SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
+
+     cout << "\n" << GetNameOfEntity(pMiner->ID()) 
+          << ": Okay Hun, dis cowboy give on my nervs!";
+
+	 if (!pMiner->Raged())
+	 {
+		 pMiner->IncreaseRage();
+	 }
+	 else 
+	 {
+		 pMiner->GetFSM()->ChangeState(Fight::Instance());
+	 }
+      
+     return true;
+
+   }//end switch
   //send msg to global message handler
   return false;
 }
@@ -209,6 +261,27 @@ bool GoHomeAndSleepTilRested::OnMessage(Miner* pMiner, const Telegram& msg)
       
      return true;
 
+   case Msg_Insult:
+
+	  cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) 
+     << " at time: " << Clock->GetCurrentTime();
+
+     SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
+
+     cout << "\n" << GetNameOfEntity(pMiner->ID()) 
+          << ": Okay Hun, dis cowboy give on my nervs!";
+
+	 if (!pMiner->Raged())
+	 {
+		 pMiner->IncreaseRage();
+	 }
+	 else 
+	 {
+		 pMiner->GetFSM()->ChangeState(Fight::Instance());
+	 }
+      
+     return true;
+
    }//end switch
 
    return false; //send message to global message handler
@@ -239,7 +312,7 @@ void QuenchThirst::Execute(Miner* pMiner)
 
   cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer";
 
-  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());  
+  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance()); 
 }
 
 
@@ -251,6 +324,33 @@ void QuenchThirst::Exit(Miner* pMiner)
 
 bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 {
+	SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+
+   switch(msg.Msg)
+   {
+	   case Msg_Insult:
+
+	  cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) 
+     << " at time: " << Clock->GetCurrentTime();
+
+     SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
+
+     cout << "\n" << GetNameOfEntity(pMiner->ID()) 
+          << ": Okay Hun, dis cowboy give on my nervs!";
+
+	 if (!pMiner->Raged())
+	 {
+		 pMiner->IncreaseRage();
+	 }
+	 else 
+	 {
+		 pMiner->GetFSM()->ChangeState(Fight::Instance());
+	 }
+      
+     return true;
+
+   }//end switch
+
   //send msg to global message handler
   return false;
 }
@@ -288,5 +388,44 @@ bool EatStew::OnMessage(Miner* pMiner, const Telegram& msg)
   //send msg to global message handler
   return false;
 }
+
+
+//------------------------------------------------------------------------Fight
+
+Fight* Fight::Instance()
+{
+  static Fight instance;
+
+  return &instance;
+}
+
+
+void Fight::Enter(Miner* pMiner)
+{
+  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Time to beat yah ass";
+}
+
+void Fight::Execute(Miner* pMiner)
+{
+  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Taste mah nugget in yah face!";
+
+  pMiner->GetFSM()->RevertToPreviousState();
+}
+
+void Fight::Exit(Miner* pMiner)
+{ 
+  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "You shoulda never crossed mah path";
+
+  pMiner->ResetRage();
+}
+
+
+bool Fight::OnMessage(Miner* pMiner, const Telegram& msg)
+{
+  //send msg to global message handler
+  return false;
+}
+
+
 
 

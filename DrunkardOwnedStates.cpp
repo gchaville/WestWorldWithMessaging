@@ -1,4 +1,5 @@
 #include "DrunkardOwnedStates.h"
+#include "MinerOwnedStates.h"
 #include "fsm/State.h"
 #include "Drunkard.h"
 #include "Locations.h"
@@ -57,6 +58,11 @@ void EnterSaloonAndGetSmashed::Execute(Drunkard* pDrunkard)
   if (pDrunkard->PocketsEmpty())
   {
     pDrunkard->GetFSM()->ChangeState(GoHomeAndSoberUpTilRested::Instance());
+  }
+
+  if (pDrunkard->Drunkenness() >= FightLevel)
+  {
+	  pDrunkard->GetFSM()->ChangeState(ProvokeFight::Instance());
   }
 
   if (pDrunkard->Drunk())
@@ -281,6 +287,11 @@ void PlayLoto::Execute(Drunkard* pDrunkard)
 	  pDrunkard->GetFSM()->ChangeState(EnterSaloonAndGetSmashed::Instance());  
   else
 	  pDrunkard->GetFSM()->ChangeState(VisitBankAndDepositGoldLoto::Instance());  
+
+  if (pDrunkard->Drunkenness() >= FightLevel)
+  {
+	  pDrunkard->GetFSM()->ChangeState(ProvokeFight::Instance());
+  }
 }
 
 
@@ -293,9 +304,51 @@ void PlayLoto::Exit(Drunkard* pDrunkard)
 
 }
 
-
 bool PlayLoto::OnMessage(Drunkard* pDrunkard, const Telegram& msg)
+{
+	//send msg to global message handler
+  return false;
+}
+
+//------------------------------------------------------------------------ProvokeFight
+
+bool ProvokeFight::OnMessage(Drunkard* pDrunkard, const Telegram& msg)
 {
   //send msg to global message handler
   return false;
+}
+
+ProvokeFight* ProvokeFight::Instance()
+{
+  static ProvokeFight instance;
+
+  return &instance;
+}
+
+void ProvokeFight::Enter(Drunkard* pDrunkard)
+{
+  if (pDrunkard->Location() != saloon)
+  {    
+    pDrunkard->ChangeLocation(saloon);
+
+    cout << "\n" << GetNameOfEntity(pDrunkard->ID()) << ": " << "Walking to the saloon";
+  }
+
+  Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+                                pDrunkard->ID(),
+                                ent_Miner_Bob,
+                                Msg_Insult,
+                                NO_ADDITIONAL_INFO);  
+}
+
+void ProvokeFight::Execute(Drunkard* pDrunkard)
+{
+	cout << "\n" << GetNameOfEntity(pDrunkard->ID()) << ": Waitin' dis female !";
+
+	pDrunkard->GetFSM()->RevertToPreviousState();
+}
+
+void ProvokeFight::Exit(Drunkard* pDrunkard)
+{
+	cout << "\n" << GetNameOfEntity(pDrunkard->ID()) << ": Always waitin' for yah !";
 }
